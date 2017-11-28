@@ -22,9 +22,9 @@ function getIndex(str,search,i=0){
   return arr
 }
 module.exports = getIndex;
-/*
-使用：
-let str = "abcdefgabcdefg"
+
+//使用：
+/*let str = "abcdefgabcdefg"
 let search = 'def'
 console.log(getIndex(str,search)) 
 // [3,10]表示第一次出现def的地方为3，第二次出现def的地方为10

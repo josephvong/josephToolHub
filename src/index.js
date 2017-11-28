@@ -7,6 +7,6 @@ module.exports = {
   arrayEqual,
 
   //----------string字符串方法----------- 
-  getIndex,
+  getIndex, //返回字符串str 内 某个字符“search” 的位置。
   detectNum,
 }
