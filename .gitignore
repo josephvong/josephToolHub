@@ -1,0 +1,12 @@
+# files
+*.log
+*.zip
+.DS_Store
+
+# folders
+node_modules/*
+karmaTest/coverage/*
+
+# Editor directories and files
+.vscode
+.idea
