@@ -16,10 +16,10 @@
 describe('Array API',function(){
     describe('#arrayEqual()', function () {
         it('should return false',()=>{
-            assert.notEqual(josephfn.arrayEqual([0, 2, 3], [1, 2, 3]))
+            assert.notEqual(josephfn.equal([0, 2, 3], [1, 2, 3]))
         })
         it('should return true',()=>{
-            assert(josephfn.arrayEqual([1, 2, 3], [1, 2, 3]))
+            assert(josephfn.equal([1, 2, 3], [1, 2, 3]))
         })
     })
 })

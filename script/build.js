@@ -37,7 +37,7 @@ new Promise((resolve,reject)=>{
       console.log(chalk.cyan('  Build complete.\n'))
     })  
   })
-}).then(()=>{ // 以下为 将src 里面的函数 拷贝到根目录，方便在单个函数来引入
+})/*.then(()=>{ // 以下为 将src 里面的函数 拷贝到根目录，方便在单个函数来引入
   let copying = ora('copying...')
   copying.start()
 
@@ -59,6 +59,6 @@ new Promise((resolve,reject)=>{
       })
     })
   })
-}).catch((err)=>{
+})*/.catch((err)=>{
   throw err
 })

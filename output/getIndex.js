@@ -21,7 +21,8 @@ function getIndex(str,search,i=0){
   }
   return arr
 }
-module.exports = getIndex;
+//module.exports = getIndex;
+export default getIndex
 
 //使用：
 /*let str = "abcdefgabcdefg"

@@ -16,7 +16,9 @@ function detectNum(str){
   }
   return true
 }
-module.exports = detectNum
+//module.exports = detectNum
+export default detectNum
+
 /*
 //用法
 console.log(detectNum('01239')) // 全数字 true
