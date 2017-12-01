@@ -1,6 +1,6 @@
 describe('GeneralTool API:',()=>{
     // 测试 getIndex函数
-    describe('#equal()',()=>{ 
+    /*describe('#equal()',()=>{ 
         
         it(`0 0 对比 true`,()=>{ 
             //console.log(josephfn.equal(0, 0))
@@ -44,5 +44,12 @@ describe('GeneralTool API:',()=>{
         it(`循环引用 true`,()=>{ 
             assert( josephfn.equal(a, b) ) // true
         }) 
-    })
+    })*/
+
+    /*describe('#curry()',()=>{  
+
+        it(`验证 输出全部都是 [1, 2, 3, 4, 5]`,()=>{ 
+            
+        })
+    })*/
 })

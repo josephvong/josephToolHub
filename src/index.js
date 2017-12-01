@@ -15,8 +15,19 @@ const strReverse = require('./string/strReverse').default
 const isPlainObject = require('./object/isPlainObject').default 
 const extend = require('./object/extend').default 
 
+//----------------Time/Date------------------------------
+const chnDay = require('./time/chnDay').default 
+const dateFormat = require('./time/dateFormat').default 
+const formatPassTime = require('./time/formatPassTime').default 
+const formatRemainTime = require('./time/formatRemainTime').default 
+const isLeapYear = require('./time/isLeapYear').default 
+
+
+
+
 // ---------------generalTool------------------- 
 const equal = require('./generalTool/equal').default
+const curry = require('./generalTool/curry').default
 
 module.exports = {
   arrayEqual,
@@ -30,10 +41,18 @@ module.exports = {
   removeNum,  // 去除字符串数字函数
   strReverse, // 字符串翻转输出 函数
 
+  //----------时间 与 日期--------------------
+  chnDay,  // 输出 中文 星期一 星期二 等等
+  dateFormat,  //日期格式化
+  formatPassTime, // 超过时间 格式化 输出 （超过）“xx日xx时xx分xx秒”
+  formatRemainTime, //剩余时间 格式化 输出 （还剩）xx年xx月xx日xx时xx分
+  isLeapYear,   // 闰年判断
+
   //-----------object 对象方法---------------
   isPlainObject, // 判断对象是否是个 纯粹对象
   extend,   // 仿 jquery 的 对象深克隆函数
 
   // ---------------通用工具函数-------------
-  equal,  // 全类型 数据相等 判断函数 
+  equal,  // 全类型 数据相等 判断函数
+  //curry  // 函数柯粒化 (未通过调用测试)
 }
