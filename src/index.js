@@ -22,8 +22,10 @@ const formatPassTime = require('./time/formatPassTime').default
 const formatRemainTime = require('./time/formatRemainTime').default 
 const isLeapYear = require('./time/isLeapYear').default 
 
-
-
+//--------------------class/style----------------------------------
+const hasClass = require('./class/hasClass').default
+const addClass = require('./class/addClass').default
+const getStyle = require('./class/getStyle').default
 
 // ---------------generalTool------------------- 
 const equal = require('./generalTool/equal').default
@@ -48,11 +50,16 @@ module.exports = {
   formatRemainTime, //剩余时间 格式化 输出 （还剩）xx年xx月xx日xx时xx分
   isLeapYear,   // 闰年判断
 
+  //----------------类名 与 样式-------------------------
+  getStyle,  // 获取dom的单个样式属性
+  hasClass,  // 判断 dom 是否有 某个类
+  addClass,  // 给 dom 添加 某个类
+
   //-----------object 对象方法---------------
   isPlainObject, // 判断对象是否是个 纯粹对象
   extend,   // 仿 jquery 的 对象深克隆函数
 
   // ---------------通用工具函数-------------
   equal,  // 全类型 数据相等 判断函数
-  //curry  // 函数柯粒化 (未通过调用测试)
+  curry  // 函数柯粒化 (未通过调用测试)
 }

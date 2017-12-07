@@ -1,0 +1,34 @@
+ <html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" >
+  <title>home</title> 
+  <style>
+    #test{
+      width:100px;
+      height:100px;
+      background: red;
+    }
+    .t1{
+      color:blue;
+    }
+    .t2{
+      font-size: 30px
+    }
+  </style>
+</head>
+<body> 
+  <div id="test" style="border:1px solid blue">aa</div>
+</body>
+<script src="./josephfn.min.js" ></script>
+<script>
+  //console.log(josephfn)
+  var ele = document.querySelector('#test')
+  console.log(josephfn.getStyle(ele,'background'))
+  
+  josephfn.addClass(ele,'t2')
+  console.log(josephfn.hasClass(ele,'t1'))
+  console.log(josephfn.hasClass(ele,'t2'))
+</script>
+</html>

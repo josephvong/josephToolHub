@@ -44,12 +44,5 @@ describe('GeneralTool API:',()=>{
         it(`循环引用 true`,()=>{ 
             assert( josephfn.equal(a, b) ) // true
         }) 
-    })*/
-
-    /*describe('#curry()',()=>{  
-
-        it(`验证 输出全部都是 [1, 2, 3, 4, 5]`,()=>{ 
-            
-        })
-    })*/
+    })*/ 
 })
