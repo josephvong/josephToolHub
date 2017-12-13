@@ -29,7 +29,7 @@ const getStyle = require('./class/getStyle').default
 
 // ---------------generalTool------------------- 
 const equal = require('./generalTool/equal').default
-const curry = require('./generalTool/curry').default
+const pri_curry = require('./generalTool/pri_curry').default
 
 module.exports = {
   arrayEqual,
@@ -61,5 +61,5 @@ module.exports = {
 
   // ---------------通用工具函数-------------
   equal,  // 全类型 数据相等 判断函数
-  curry  // 函数柯粒化 (未通过调用测试)
+  pri_curry  // 函数柯粒化终极版（支持占位参数） (未通过调用测试)
 }
