@@ -22,12 +22,15 @@ const formatPassTime = require('./time/formatPassTime').default
 const formatRemainTime = require('./time/formatRemainTime').default 
 const isLeapYear = require('./time/isLeapYear').default 
 
-//--------------------class/style----------------------------------
+//--------------------class / style----------------------------------
 const hasClass = require('./class/hasClass').default
 const addClass = require('./class/addClass').default
 const getStyle = require('./class/getStyle').default
-const getPos = require('./class/getPos').default
-const getTop = require('./class/getTop').default
+
+//----------------------dom-------------------------------
+const getPos = require('./dom/getPos').default
+const getTop = require('./dom/getTop').default
+
 // ---------------generalTool------------------- 
 const equal = require('./generalTool/equal').default
 const pri_curry = require('./generalTool/pri_curry').default
@@ -55,6 +58,8 @@ module.exports = {
   getStyle,  // 获取dom的单个样式属性
   hasClass,  // 判断 dom 是否有 某个类
   addClass,  // 给 dom 添加 某个类
+
+  //---------------------dom 操作----------------------
   getPos,
   getTop,
 
