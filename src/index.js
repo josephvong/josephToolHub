@@ -37,12 +37,10 @@ const getTop = require('./dom/getTop').default
 
 // ---------------generalTool------------------- 
 const equal = require('./generalTool/equal').default
-<<<<<<< HEAD
 const curry = require('./generalTool/curry').default
 const type = require('./generalTool/type').default
-=======
 const pri_curry = require('./generalTool/pri_curry').default
->>>>>>> f81eb3a45e45835c905eaa870de9111ee6e5239a
+
 
 module.exports = {
   arrayEqual,  // 基础数据数组 全等判断
@@ -81,6 +79,7 @@ module.exports = {
 
   // ---------------通用工具函数-------------
   equal,  // 全类型 数据相等 判断函数
-  pri_curry,  // // 函数柯粒化终极版（支持占位参数） (未通过调用测试)
+  curry, //   函数柯粒化
+  pri_curry,  // 函数柯粒化终极版（支持占位参数） (未通过调用测试)
   type
 }
