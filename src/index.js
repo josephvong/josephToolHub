@@ -25,16 +25,24 @@ const formatPassTime = require('./time/formatPassTime').default
 const formatRemainTime = require('./time/formatRemainTime').default 
 const isLeapYear = require('./time/isLeapYear').default 
 
-//--------------------class/style----------------------------------
+//--------------------class / style----------------------------------
 const hasClass = require('./class/hasClass').default
 const addClass = require('./class/addClass').default
 const getStyle = require('./class/getStyle').default
 const prefixStyle = require('./class/prefixStyle').default
 
+//----------------------dom-------------------------------
+const getPos = require('./dom/getPos').default
+const getTop = require('./dom/getTop').default
+
 // ---------------generalTool------------------- 
 const equal = require('./generalTool/equal').default
+<<<<<<< HEAD
 const curry = require('./generalTool/curry').default
 const type = require('./generalTool/type').default
+=======
+const pri_curry = require('./generalTool/pri_curry').default
+>>>>>>> f81eb3a45e45835c905eaa870de9111ee6e5239a
 
 module.exports = {
   arrayEqual,  // 基础数据数组 全等判断
@@ -62,6 +70,10 @@ module.exports = {
   addClass,  // 给 dom 添加 某个类
   prefixStyle,  // 行间元素 的 css 属性添加 前缀
 
+  //---------------------dom 操作----------------------
+  getPos,
+  getTop,
+
   //-----------object 对象方法---------------
   isPlainObject, // 判断对象是否是个 纯粹对象
   extend,   // 仿 jquery 的 对象深克隆函数
@@ -69,6 +81,6 @@ module.exports = {
 
   // ---------------通用工具函数-------------
   equal,  // 全类型 数据相等 判断函数
-  curry,  // 函数柯粒化 (未通过调用测试)
+  pri_curry,  // // 函数柯粒化终极版（支持占位参数） (未通过调用测试)
   type
 }

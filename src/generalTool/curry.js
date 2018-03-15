@@ -1,125 +1,51 @@
-// basic
-/*var curry = function(fn){
-  var args = [].slice.call(arguments,1) //复制一份参数数组（从第二位开始，因为第一个参数是fn）
-  return function(){// 返回一个函数
-    var newArgs = args.concat([].slice.call(arguments));//将这个函数调用时的传参（数组）复制 拼接到curry的参数后面
-    return fn.apply(this, newArgs) // 用 fn(柯力化处理的函数) 调用 这些参数 执行
-  }
-}
+/*
+curry 目的：
+让一个多参数的函数 转化成 一系列 使用一个参数的函数（一些函数在传入不同个数的参数，可以执行不同的功能）
+或者 让 一个参数 事先传入部分参数（但先不执行）来作为 某种特殊意义的 另一个函数，例如：
+  // 示意ajax函数
+  function ajax(type, url, data) {}
+  ajax('POST', 'www.test.com', "name=kevin") // 调用
+  // 利用 curry 封装 ajax
+  var ajaxCurry = curry(ajax);
+  // 以 POST 类型请求数据
+  var post = ajaxCurry('POST');
+  post('www.test.com', "name=kevin");
 
-function add(a,b){
-  return a+b
-}
-var addCurry = curry(add,1,2)
-console.log(addCurry())
-var curryAdd = curry(add)
-console.log(curryAdd(1,2))
+curry(fn,args) 逻辑:
+1 . 第一个参数fn为需要 处理的 函数， 后面的参数为 后续添加的 参数
+2 . 事先要获取fn 的 所需参数 个数 （fn.length属性可获得）
+3 . curry() 返回一个函数‘function’ 在function 中 获取 fn 已经 传入的参数 以及curry() 所接受的args
+4 . 拼接fn的传参 和 curry 的 传参(args) 并且 将拼接后的传参数 与 fn 的所需传参数比较
+5 . 未达到 fn的 所需参数个数，function 继续返回 一个 curry，接收 fn 和当前 的拼接参数， 
+6 . 已达到参数个数， 执行 fn
 */
 
- 
-
-/* V2
 function curry(fn,args){
-  var length = fn.length; //function中length属性为获取为一个函数定义的参数数目
-  var args = args || []; 
+  var length = fn.length // 获取传入参数 fn 的 （需要）传参个数（func.length 获得的是需要传参，不是已经传参）
+  var args = args || []
 
-  return function(){ // 输出一个函数 
-    var _args = args.slice(0),//复制curry的参数数组（去除第一个 fn ） 
-        arg, i;
-
-    // 遍历 输出函数 调用时 的传参数组
-    for (var i = 0; i < arguments.length; i++) {
-      arg = arguments[i]; 
-      _args.push(arg)// 将每个传参 放入 _args 数组中（原curry函数的传参数数组）
-    }
-
-    // 如果 传参没有达到 fn 所定义的参数的 数目
-    if(_args.length<length){
-      return curry.call(this,fn,_args) // 继续返回 curry(fn)并且 把 已经添加新参数的_args 传入curry
-    }else{ // 如果 传入的参数已经达到参数的数目
-      return fn.apply(this,_args) // 执行fn，并且使用 最终传入的所有参数数组
-    }
-  }
-}
-
-var fn = curry(function(a, b, c) {
-    console.log([a, b, c]);
-});
-
-fn("a", "b", "c") // ["a", "b", "c"]
-fn("a", "b")("c") // ["a", "b", "c"]
-fn("a")("b")("c") // ["a", "b", "c"]
-fn("a")("b", "c") // ["a", "b", "c"]
-*/
-
-// 终极版 curry
-var _ = {};
-function curry(fn,args,holes){
-  var length = fn.length;
-  args = args || [];
-  holes = holes || [];
-
+  // curry 返回一个参数
   return function(){
-    var _args = args.slice(0),
-        _holes = holes.slice(0),
-        argsLen = args.length,
-        holesLen = holes.length,
-        arg,i,
-        index = 0;
+    var _args = args.slice(0), // _args 为 传入 curry() 中的所有args（排除第一个fn参数）
+        arg, i
 
+    // 遍历 输出的 function 所接受的传参
     for (i = 0; i < arguments.length; i++) {
-      arg = arguments[i];
-      // 处理类似 fn(1, _, _, 4)(_, 3) 这种情况，index 需要指向 holes 正确的下标
-      if(arg === _ && holesLen){
-        index++
-        if(index>holesLen){
-          _args.push(arg);
-          _holes.push(argsLen-1+index-holesLen)
-        }
-      }
-      // 处理类似 fn(1)(_) 这种情况
-      else if(arg === _){
-        _args.push(arg);
-        _holes.push(argsLen + i);
-      }
-      // 处理类似 fn(_, 2)(1) 这种情况
-      else if(holesLen){ 
-        if(index>=holesLen){// fn(_, 2)(_, 3)
-          _args.push(arg);
-        }else{ // fn(_,2)(1) 用参数 1 替换占位符
-          _args.splice(_holes[index],1,arg);
-          _holes.splice(index,1)
-        } 
-      }
-      else{
-        _args.push(arg)
-      }  
+      arg = arguments[i]; // 当前遍历的参数
+      _args.push(arg) // 将 新return的function 所接受的每个参数 拼接到原 fn(curry第一个参数)的参数里面
     }
 
-    if(_holes.length || _args.length<length){
-      return curry.call(this,fn,_args,_holes)
-    }else{
-      return fn.apply(this,_args);
-    } 
-  } 
+    // _args是原fn的参数 和 后来输出function 接受的参数 ， 与 fn(curry第一个参数) 的所需参数长度 比较
+    if(_args.length<length){ // （通过function）新接受的参数 未达到 fn 的 要求传参数量
+      
+      return curry.call(this,fn,_args) // 返回的function 继续 返回 curry()函数 ， 并且 把已经接收到的 _args 传入curry()  
+    
+    }else{ // _args 达到 fn 的所需参数个数后
+
+      return fn.apply(this,_args) // 执行 fn
+    
+    }    
+  }
 }
 
 export default curry
-
-/* 
-var _ = {}; // _ 可以是空对象 或者 null 反正意思是用于占位用
-
-var fn = curry(function(a, b, c, d, e) {
-    console.log([a, b, c, d, e]);
-});
-
-
-// 验证 输出全部都是 [1, 2, 3, 4, 5]
-fn(1, 2, 3, 4, 5);
-fn(_, 2, 3, 4, 5)(1);
-fn(1, _, 3, 4, 5)(2);
-fn(1, _, 3)(_, 4)(2)(5);
-fn(1, _, _, 4)(_, 3)(2)(5);
-fn(_, 2)(_, _, 4)(1)(3)(5)
-
-*/
