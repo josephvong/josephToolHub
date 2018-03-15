@@ -1,7 +1,9 @@
 //require('babel-polyfill')
 
+//-----------------Array----------------------------
 const arrayEqual = require('./array/arrayEqual').default
-//import arrayEqual from './array/arrayEqual'
+const arrayUnique = require('./array/arrayUnique').default
+ 
 //-----------string------------
 const getIndex = require('./string/getIndex').default 
 const detectNum = require('./string/detectNum').default
@@ -13,7 +15,8 @@ const strReverse = require('./string/strReverse').default
 
 //--------------Object--------------------------
 const isPlainObject = require('./object/isPlainObject').default 
-const extend = require('./object/extend').default 
+const extend = require('./object/extend').default
+const deepCopy = require('./object/deepCopy').default 
 
 //----------------Time/Date------------------------------
 const chnDay = require('./time/chnDay').default 
@@ -26,13 +29,16 @@ const isLeapYear = require('./time/isLeapYear').default
 const hasClass = require('./class/hasClass').default
 const addClass = require('./class/addClass').default
 const getStyle = require('./class/getStyle').default
+const prefixStyle = require('./class/prefixStyle').default
 
 // ---------------generalTool------------------- 
 const equal = require('./generalTool/equal').default
 const curry = require('./generalTool/curry').default
+const type = require('./generalTool/type').default
 
 module.exports = {
-  arrayEqual,
+  arrayEqual,  // 基础数据数组 全等判断
+  arrayUnique, // 数据去重
 
   //----------string字符串方法----------- 
   getIndex, //返回字符串str 内 某个字符“search” 的位置。
@@ -54,12 +60,15 @@ module.exports = {
   getStyle,  // 获取dom的单个样式属性
   hasClass,  // 判断 dom 是否有 某个类
   addClass,  // 给 dom 添加 某个类
+  prefixStyle,  // 行间元素 的 css 属性添加 前缀
 
   //-----------object 对象方法---------------
   isPlainObject, // 判断对象是否是个 纯粹对象
   extend,   // 仿 jquery 的 对象深克隆函数
+  deepCopy, // json/arr 数据 深度 克隆
 
   // ---------------通用工具函数-------------
   equal,  // 全类型 数据相等 判断函数
-  curry  // 函数柯粒化 (未通过调用测试)
+  curry,  // 函数柯粒化 (未通过调用测试)
+  type
 }

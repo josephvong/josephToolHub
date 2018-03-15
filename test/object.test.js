@@ -46,4 +46,18 @@ describe('Object API:',()=>{
             assert( josephfn.equal(josephfn.extend(obj1, obj2),{a:1,b:{c:[5]}}) )
         }) 
     }) 
+
+    // 测试 deepCopy 函数
+    describe('测试deepCopy()函数',()=>{
+        let Obj = {
+          a:'a', b:'b', c:[1,2,3],
+          d:{e:'cc',f:'dd'},
+          e:{a:{b:'1'},c:[0]}
+        }
+        let NewObj = josephfn.deepCopy(Obj);
+        NewObj.c[1] = 'fff'
+        NewObj.e.a = '' 
+        it('Obj.c[1]没变化',()=>{assert(Obj.c[1]!==NewObj.c[1])})
+        it('Obj.e.a没变化',()=>{assert(Obj.e.a!==NewObj.e.a)})
+    })
 })

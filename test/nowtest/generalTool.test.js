@@ -44,5 +44,21 @@ describe('GeneralTool API:',()=>{
         it(`循环引用 true`,()=>{ 
             assert( josephfn.equal(a, b) ) // true
         }) 
-    })*/ 
+    })*/
+    let a = function(){ return 'a' }
+    let b = {}
+    let c = {c:1}
+    let d = new String()
+    let e = new Date()
+    let f = new Date().getTime()
+    let g = /a/gi
+    describe('测试type()函数',()=>{  
+        it('a 为 function',()=>{assert( josephfn.type(a)=='function')}) 
+        it('b 为 object',()=>{assert( josephfn.type(b)=='object')}) 
+        it('c 为 object',()=>{assert( josephfn.type(c)=='object')}) 
+        it('d 为 string',()=>{assert( josephfn.type(d)=='string')}) 
+        it('e 为 date',()=>{assert( josephfn.type(e)=='date')}) 
+        it('f 为 number',()=>{assert( josephfn.type(f)=='number')})
+        it('g 为 regexp',()=>{assert( josephfn.type(g)=='regexp')})  
+    })  
 })
